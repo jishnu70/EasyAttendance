@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
-// UserDAO remains unchanged
 @Dao
 interface UserDAO {
     @Query("SELECT * FROM user_detail LIMIT 1")
@@ -16,7 +15,6 @@ interface UserDAO {
     suspend fun insertUser(user: UserEntity)
 }
 
-// StudentDAO remains unchanged
 @Dao
 interface StudentDAO {
     @Query("SELECT * FROM student_detail LIMIT 1")
@@ -39,7 +37,7 @@ interface SubjectDAO {
 
     suspend fun deleteSubject(subject: SubjectEntity) = deleteSubject(subject.id)
 
-    // Added: Fetch teacher's email for Firestore path
+    
     @Query("SELECT email FROM user_detail WHERE id = :teacherId")
     suspend fun getTeacherEmail(teacherId: Int): String?
 }
@@ -61,7 +59,7 @@ interface TeacherDAO {
     @Query("UPDATE attendance SET synced = 1 WHERE id = :id")
     suspend fun markAsSynced(id: Int)
 
-    // Added: Fetch teacher's email based on subjectId for Firestore path
+   
     @Query("SELECT u.email FROM user_detail u JOIN subject_detail s ON u.id = s.teacherId WHERE s.id = :subjectId")
     suspend fun getTeacherEmail(subjectId: Int): String?
 }
