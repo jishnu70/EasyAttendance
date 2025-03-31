@@ -128,5 +128,4 @@ Submit a PR with a description of your changes.
 
 ## Contact
 For questions or support:
-- **Author**: Jishnu C
 - **GitHub**: jishnu70
